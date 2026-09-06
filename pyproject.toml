@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pipette-viscometry"
+version = "0.1.0"
+description = "Interactive span-selection fitting for micropipette aspiration viscometry"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=2.0",
+    "pandas>=2.0",
+    "matplotlib>=3.8",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+pipette-fit = "pipette_viscometry.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pipette_viscometry"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
