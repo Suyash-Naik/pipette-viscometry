@@ -1,0 +1,22 @@
+[workspace]
+channels = ["conda-forge"]
+name = "pipette-viscometry"
+platforms = ["win-64"]
+version = "0.1.0"
+
+[tasks]
+test = "pytest -q"
+fit = "pipette-fit --config config/example_config.yaml"
+
+[dependencies]
+python = "3.13.*"
+pandas = ">=3.0.5,<4"
+matplotlib = ">=3.11.1,<4"
+numpy = ">=2.5.2,<3"
+pyyaml = ">=6.0"
+pytest = ">=8.0"
+pip = "*"
+
+
+[pypi-dependencies]
+pipette-viscometry = { path = ".", editable = true }
