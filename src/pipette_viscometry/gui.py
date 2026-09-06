@@ -338,8 +338,16 @@ class InteractiveFitter:
         if event.key in ("x", "X"):
             self._on_skip(event)
         elif event.key == "escape":
-            self.aborted = True
-            plt.close(self.fig)
+            try:
+                answer = input("Abort remaining batch? [y/N] ").strip().lower()
+            except EOFError:
+                answer = ""
+            if answer in ("y", "yes"):
+                self.aborted = True
+                plt.close(self.fig)
+            else:
+                self._set_status("Abort cancelled.", self.theme.muted)
+                self.fig.canvas.draw_idle()
         elif event.key == "enter":
             self._on_done(event)
 
