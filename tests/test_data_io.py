@@ -41,8 +41,16 @@ def test_load_curve_coerces_numeric_strings(tmp_path):
 
 
 def test_load_curve_rejects_non_numeric(tmp_path):
-    p = write_csv(tmp_path, "text.csv", "frame,microns\n0,2.5\n1,N/A\n")
+    p = write_csv(tmp_path, "text.csv", "frame,microns\n0,2.5\n1,abc\n")
     with pytest.raises(ValueError, match="Non-numeric 'microns'"):
+        load_curve(p)
+
+
+def test_load_curve_rejects_na_sentinel(tmp_path):
+    # "N/A" is in pandas' default na_values, so read_csv converts it to NaN
+    # before coercion runs -- the missing-row check is what catches it.
+    p = write_csv(tmp_path, "na.csv", "frame,microns\n0,2.5\n1,N/A\n")
+    with pytest.raises(ValueError, match=r"1 row\(s\) with missing"):
         load_curve(p)
 
 
@@ -62,7 +70,7 @@ def test_load_curve_rejects_unicode_minus(tmp_path):
 
 def test_load_curve_rejects_blank_cells(tmp_path):
     p = write_csv(tmp_path, "blank.csv", "frame,microns\n0,2.5\n1,\n2,3.5\n")
-    with pytest.raises(ValueError, match="1 row\(s\) with missing"):
+    with pytest.raises(ValueError, match=r"1 row\(s\) with missing"):
         load_curve(p)
 
 
