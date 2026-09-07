@@ -3,6 +3,7 @@ import numpy as np
 import pytest
 from pipette_viscometry.fitting import fit_span_data
 
+
 def test_fit_span_data_exact():
     x = np.linspace(0, 10, 100)
     y = 2.5 * x + 1.2
