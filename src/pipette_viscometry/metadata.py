@@ -19,11 +19,19 @@ LINE_REGEX = re.compile(
 )
 
 def parse_pip_info(filepath: Path) -> tuple[dict[str, EmbryoMeta], list[str]]:
+    """
+    Parses a PipInfo.txt metadata file into {embryo_id: EmbryoMeta}.
+
+    Returns the metadata plus a list of lines that did not match the expected
+    format. A missing file is an error, not a skipped line: callers pass this
+    path only when metadata was explicitly configured, so silently returning
+    empty metadata would drop per-embryo date/time/notes from every result row.
+    """
     metadata = {}
     skipped_lines = []
-    
+
     if not filepath.exists():
-        return metadata, [f"File not found: {filepath}"]
+        raise FileNotFoundError(f"Metadata file not found: {filepath}")
 
     with open(filepath, "r", encoding="utf-8") as f:
         for line_num, line in enumerate(f, 1):
@@ -57,8 +65,17 @@ def parse_pip_info(filepath: Path) -> tuple[dict[str, EmbryoMeta], list[str]]:
     return metadata, skipped_lines
 
 def load_series_map(filepath: Path | None) -> dict[int, dict]:
-    if not filepath or not filepath.exists():
+    """
+    Loads optional per-series overrides into {series: {embryo_id, include}}.
+
+    None means "not configured" and yields an empty map. A configured path that
+    does not exist is an error: returning empty would silently drop every
+    include=False exclusion and process series the user meant to leave out.
+    """
+    if filepath is None:
         return {}
+    if not filepath.exists():
+        raise FileNotFoundError(f"Series map file not found: {filepath}")
     df = pd.read_csv(filepath)
     mapping = {}
     for _, row in df.iterrows():
