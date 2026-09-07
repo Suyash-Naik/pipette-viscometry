@@ -9,6 +9,22 @@ from .gui import InteractiveFitter
 
 SERIES_REGEX = re.compile(r"series0*(\d+)", re.IGNORECASE)
 
+def validate_paths(cfg) -> list[str]:
+    """
+    Returns a message for each configured input path that is missing.
+
+    Optional paths left unset in the config are skipped; a path the user did
+    configure is required, so processing must not start without it.
+    """
+    problems = []
+    if not cfg.input_dir.is_dir():
+        problems.append(f"Input directory not found: {cfg.input_dir}")
+    if cfg.metadata_txt and not cfg.metadata_txt.exists():
+        problems.append(f"Metadata file not found: {cfg.metadata_txt}")
+    if cfg.series_map_csv and not cfg.series_map_csv.exists():
+        problems.append(f"Series map file not found: {cfg.series_map_csv}")
+    return problems
+
 def main():
     parser = argparse.ArgumentParser(description="Pipette Viscometry Interactive Fitting Tool")
     parser.add_argument("--config", help="Path to config YAML file (omit to pick one in a file dialog)")
@@ -23,7 +39,17 @@ def main():
         print(f"Using config: {config_path}")
 
     cfg = load_config(config_path)
-    
+
+    # Fail before opening any plot window, and report every missing path at once
+    # rather than making the user re-run to discover them one at a time.
+    problems = validate_paths(cfg)
+    if problems:
+        print("Config references paths that do not exist:", file=sys.stderr)
+        for p in problems:
+            print(f"  - {p}", file=sys.stderr)
+        print(f"Checked relative to: {Path.cwd()}", file=sys.stderr)
+        sys.exit(1)
+
     # Load metadata and overrides
     meta_dict, parse_reports = parse_pip_info(cfg.metadata_txt) if cfg.metadata_txt else ({}, [])
     series_map = load_series_map(cfg.series_map_csv)
