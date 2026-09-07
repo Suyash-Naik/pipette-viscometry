@@ -1,2 +1,2 @@
-Environments are stored in a custom detached-environments directory: C:/User/Public/.pixi\pipette-viscometry-1158816026743887907\envs.
+Environments are stored in a custom detached-environments directory: C:/User/Public/.pixi\pipette-viscometry-11273315401887221267\envs.
 Symlinks are not supported on this platform so they will not be reachable from the default ('.pixi/envs') directory.
