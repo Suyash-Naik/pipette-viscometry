@@ -2,6 +2,7 @@
 import pytest
 from pipette_viscometry.physics import calculate_viscosity
 
+
 def test_calculate_viscosity_known_values():
     # Known test case
     res = calculate_viscosity(lasp=1.0, lret=-0.5, Rp=65.0, P=70.0, Rcac=367.0)
