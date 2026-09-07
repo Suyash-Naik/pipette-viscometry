@@ -1,0 +1,7 @@
+Zebrafish embryos
+exp started at 100 hours post death #This is obviously just a test file for the pip info and not real data
+
+
+
+E1 15:39 AM 3/16/2026 2.0 2.25  Notes for experiment 1
+E2 15:57 AM 2/16/2026 2.0 2.25  Notes for experiment 2
