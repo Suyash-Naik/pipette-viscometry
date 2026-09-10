@@ -130,10 +130,10 @@ To start analyzing a directory of CSV curves:
 
 ```bash
 # Using Pixi
-pixi run fit --config tests/test-data/example_config.yaml
+pixi run fit --config config/config.yaml
 
 # Using standard Python terminal
-pipette-fit --config tests/test-data/example_config.yaml
+pipette-fit --config config/config.yaml
 ```
 
 Omit `--config` to pick the YAML file from a graphical file browser instead:
