@@ -124,9 +124,14 @@ fitting:
 
 ## Usage
 
-### 1. Execute Analysis CLI
+### 0. Fiji macros
 
-An example macro is provided in `src\pipette_viscometry\fiji-macro\` to generate csvs.
+Example Fiji/ImageJ macros used in the image-processing workflow are available in [`src/pipette_viscometry/fiji-macro/`](src/pipette_viscometry/fiji-macro/).
+
+The included macros provide image-processing and profile-analysis utilities. They do not currently export the CSV curve files consumed by `pipette-fit`; running the [kymograph macro](src/pipette_viscometry/fiji-macro/Plot_Kymograph_Profile.ijm) allows you to choose to save the generated data and can be modified to save the CSVs as desired.
+
+
+### 1. Execute Analysis CLI
 
 To start analyzing a directory of CSV curves:
 
