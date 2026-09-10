@@ -5,7 +5,7 @@
 
 An interactive, config-driven Python package for micropipette aspiration viscosity measurement data analysis.
 
-![logo](.github/assests/pipette_logo.jpeg)
+![logo](.github/assets/pipette_logo.jpeg)
 
 It is a decoupled numerical architecture, an interactive dual-span Matplotlib GUI with live-updating parameter calculations, non-silent metadata parsing, and atomic, append-safe CSV storage to measure directly the mechanical parameters of creep release pipette experimental kymograph segmented csvs.
 
@@ -130,7 +130,7 @@ gui:
 
 Example Fiji/ImageJ macros used in the image-processing workflow are available in [`src/pipette_viscometry/fiji-macro/`](src/pipette_viscometry/fiji-macro/).
 
-The included macros provide image-processing and profile-analysis utilities. They do not currently export the CSV curve files consumed by `pipette-fit`; running the [kymograph macro](src/pipette_viscometry/fiji-macro/Plot_Kymograph_Profile.ijm) shows the graph of the tong extension.
+The included macros provide image-processing and profile-analysis utilities. They do not currently export the CSV curve files consumed by `pipette-fit`; running the [kymograph macro](src/pipette_viscometry/fiji-macro/Plot_Kymograph_Profile.ijm) plots the measured aspiration-tongue length over time.
 
 
 ### 1. Execute Analysis CLI
@@ -170,7 +170,7 @@ Cancelling the dialog exits without processing anything.
 
 Results are written incrementally to the configured `output_file` CSV path:
 
-This schema allows you to precisely asses where to fit and what outputs can be gained from a curve. 
+This schema allows you to precisely assess where to fit and what outputs can be gained from a curve. 
 ![GUI example](assets/Example.png)
 
 | Column | Description |

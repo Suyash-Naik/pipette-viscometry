@@ -56,3 +56,4 @@ def test_project_config_references_existing_input_data():
     assert matching_files, (
         f"No files in {input_dir} match {config.input_glob!r}"
     )
+    
