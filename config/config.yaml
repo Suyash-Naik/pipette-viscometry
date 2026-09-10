@@ -1,0 +1,34 @@
+# Example configuration for the pipette viscometry CLI.
+#
+#   pipette-fit --config config/config.yaml
+#
+# Paths below are resolved relative to the current working directory (see
+# load_config in src/pipette_viscometry/config.py), so run the command from
+# the repository root.
+
+experiment:
+  name: Zebrafish embryos
+  # Fallback date, used for any series without a matching entry in PipInfo.txt.
+  date: 3/16/2026
+
+instrument:
+  Rp: 20.0        # pipette inner radius (um)
+  Rcac: 367     # Embryo radius of curvature (um)
+  P_default: 70.0   # applied aspiration pressure (Pa)
+
+paths:
+  input_dir: tests/test-data
+  # Shell-style glob (fnmatch), not a regex: * = any run of characters,
+  # ? = one character, [0-9] = one digit. Matches any 3-digit series.
+  input_glob: Graph series0[0-9][0-9] BF.csv
+  output_file: tests/test-data/output/example_results.csv
+  append: true
+  metadata_txt: tests/test-data/PipInfo.txt
+  # Optional per-series overrides (columns: series,embryo_id,include).
+  # series_map_csv: tests/test-data/series_map.csv
+
+gui:
+  live_display: true
+  theme: dark
+  
+  

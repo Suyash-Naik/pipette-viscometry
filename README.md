@@ -5,6 +5,8 @@
 
 An interactive, config-driven Python package for micropipette aspiration viscosity measurement data analysis.
 
+![logo](.github/assets/pipette_logo.jpeg)
+
 It is a decoupled numerical architecture, an interactive dual-span Matplotlib GUI with live-updating parameter calculations, non-silent metadata parsing, and atomic, append-safe CSV storage to measure directly the mechanical parameters of creep release pipette experimental kymograph segmented csvs.
 
 
@@ -43,7 +45,7 @@ It is a decoupled numerical architecture, an interactive dual-span Matplotlib GU
    cd pipette-viscometry 
    ```
 
-2. Install dependencies and setup the environment:
+2. Install dependencies and setup the environment after pixi is installed in your system:
    ```bash
    pixi install
    ```
@@ -68,7 +70,7 @@ pipette_viscometry/
 ├── pyproject.toml               # Package build configuration (Hatchling)
 ├── pixi.toml                    # Pixi environment & task definitions
 ├── config/
-│   └── example_config.yaml      # Master experiment configuration schema
+│   └── config.yaml      # Master experiment configuration schema
 ├── src/pipette_viscometry/
 │   ├── __init__.py
 │   ├── config.py                # YAML schema parsing & validation
@@ -110,19 +112,37 @@ paths:
   input_glob: "*Values*.csv"
   output_file: "./results/ViscoResults_19042023.csv"
   append: true
+  metadata_txt: "./data/PipInfo.txt"
+  series_map_csv: "./data/series_map.csv"
+
 
 gui:
   live_display: true
-  skip_hotkey: "x"
-  escape_hotkey: "escape"
+  theme: "dark"
 
-fitting:
-  min_points: 3
 ```
 
 ---
 
 ## Usage
+
+### 0. Fiji macros
+
+Example Fiji/ImageJ macros used in the image-processing workflow are
+available in
+[`src/pipette_viscometry/fiji-macro/`](src/pipette_viscometry/fiji-macro/).
+
+- [`Plot_Kymograph_Profile.ijm`](src/pipette_viscometry/fiji-macro/Plot_Kymograph_Profile.ijm)
+  measures the position of the aspiration tongue from an image sequence and
+  plots the measured tongue length over time.
+
+- [`Sp5Maker.ijm`](src/pipette_viscometry/fiji-macro/Sp5Maker.ijm)
+  processes three-channel image stacks, saves the separated channel images,
+  and generates maximum-intensity projections for the fluorescence channels.
+
+These macros provide image-processing and profile-analysis utilities. They do
+not currently export the CSV curve files consumed by `pipette-fit` directly however fiji allows saving the csvs needed in the plot window.
+
 
 ### 1. Execute Analysis CLI
 
@@ -130,11 +150,12 @@ To start analyzing a directory of CSV curves:
 
 ```bash
 # Using Pixi
-pixi run fit --config tests/test-data/example_config.yaml
+pixi run fit --config config/config.yaml
 
 # Using standard Python terminal
-pipette-fit --config tests/test-data/example_config.yaml
+pipette-fit --config config/config.yaml
 ```
+The config yaml file is runnable example using bundled test data in the tests folder for this project. Please adapt it for your experiment before use. 
 
 Omit `--config` to pick the YAML file from a graphical file browser instead:
 
@@ -159,6 +180,9 @@ Cancelling the dialog exits without processing anything.
 ## Outputs & Data Schema
 
 Results are written incrementally to the configured `output_file` CSV path:
+
+This schema allows you to precisely assess where to fit and what outputs can be gained from a curve. 
+![GUI example](assets/Example.png)
 
 | Column | Description |
 | :--- | :--- |
