@@ -126,6 +126,8 @@ fitting:
 
 ### 1. Execute Analysis CLI
 
+An example macro is provided in `src\pipette_viscometry\fiji-macro\` to generate csvs.
+
 To start analyzing a directory of CSV curves:
 
 ```bash
@@ -160,6 +162,9 @@ Cancelling the dialog exits without processing anything.
 ## Outputs & Data Schema
 
 Results are written incrementally to the configured `output_file` CSV path:
+
+This schema allows you to precisely asses where to fit and what outputs can be gained from a curve. 
+![GUI example](assets/Example.png)
 
 | Column | Description |
 | :--- | :--- |
