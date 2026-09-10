@@ -128,9 +128,20 @@ gui:
 
 ### 0. Fiji macros
 
-Example Fiji/ImageJ macros used in the image-processing workflow are available in [`src/pipette_viscometry/fiji-macro/`](src/pipette_viscometry/fiji-macro/).
+Example Fiji/ImageJ macros used in the image-processing workflow are
+available in
+[`src/pipette_viscometry/fiji-macro/`](src/pipette_viscometry/fiji-macro/).
 
-The included macros provide image-processing and profile-analysis utilities. They do not currently export the CSV curve files consumed by `pipette-fit`; running the [kymograph macro](src/pipette_viscometry/fiji-macro/Plot_Kymograph_Profile.ijm) plots the measured aspiration-tongue length over time.
+- [`Plot_Kymograph_Profile.ijm`](src/pipette_viscometry/fiji-macro/Plot_Kymograph_Profile.ijm)
+  measures the position of the aspiration tongue from an image sequence and
+  plots the measured tongue length over time.
+
+- [`Sp5Maker.ijm`](src/pipette_viscometry/fiji-macro/Sp5Maker.ijm)
+  processes three-channel image stacks, saves the separated channel images,
+  and generates maximum-intensity projections for the fluorescence channels.
+
+These macros provide image-processing and profile-analysis utilities. They do
+not currently export the CSV curve files consumed by `pipette-fit` directly however fiji allows saving the csvs needed in the plot window.
 
 
 ### 1. Execute Analysis CLI
