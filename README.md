@@ -135,6 +135,7 @@ pixi run fit --config config/config.yaml
 # Using standard Python terminal
 pipette-fit --config config/config.yaml
 ```
+The config yaml file is runnable example using bundled test data in the tests folder for this project. Please adapt it for your experiment before use. 
 
 Omit `--config` to pick the YAML file from a graphical file browser instead:
 
