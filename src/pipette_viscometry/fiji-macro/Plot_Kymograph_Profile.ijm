@@ -2,7 +2,7 @@ currentSlice = getSliceNumber();
 //makeLine(262, 293, 262, 125);
 Dialog.create("Plot Right-Most Dark Peak");
 Dialog.addNumber("First frame", currentSlice);
-Dialog.addNumber("Last frame", nSlices - 1);
+Dialog.addNumber("Last frame", nSlices);
 Dialog.addMessage("The threshold is the percentage of the average\nof the right half profile in the first frame");
 Dialog.addNumber("Threshold (in percent)", 95);
 Dialog.addCheckbox("Show_kymograph", !false);

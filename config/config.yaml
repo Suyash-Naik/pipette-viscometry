@@ -1,6 +1,6 @@
 # Example configuration for the pipette viscometry CLI.
 #
-#   pipette-viscometry --config config/config.yaml
+#   pipette-fit--config config/config.yaml
 #
 # Paths below are resolved relative to the current working directory (see
 # load_config in src/pipette_viscometry/config.py), so run the command from
