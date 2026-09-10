@@ -70,7 +70,7 @@ pipette_viscometry/
 ├── pyproject.toml               # Package build configuration (Hatchling)
 ├── pixi.toml                    # Pixi environment & task definitions
 ├── config/
-│   └── example_config.yaml      # Master experiment configuration schema
+│   └── config.yaml      # Master experiment configuration schema
 ├── src/pipette_viscometry/
 │   ├── __init__.py
 │   ├── config.py                # YAML schema parsing & validation
@@ -112,14 +112,14 @@ paths:
   input_glob: "*Values*.csv"
   output_file: "./results/ViscoResults_19042023.csv"
   append: true
+  metadata_txt: "./data/PipInfo.txt"
+  series_map_csv: "./data/series_map.csv"
+
 
 gui:
   live_display: true
-  skip_hotkey: "x"
-  escape_hotkey: "escape"
+  theme: "dark"
 
-fitting:
-  min_points: 3
 ```
 
 ---
@@ -130,7 +130,7 @@ fitting:
 
 Example Fiji/ImageJ macros used in the image-processing workflow are available in [`src/pipette_viscometry/fiji-macro/`](src/pipette_viscometry/fiji-macro/).
 
-The included macros provide image-processing and profile-analysis utilities. They do not currently export the CSV curve files consumed by `pipette-fit`; running the [kymograph macro](src/pipette_viscometry/fiji-macro/Plot_Kymograph_Profile.ijm) allows you to choose to save the generated data and can be modified to save the CSVs as desired.
+The included macros provide image-processing and profile-analysis utilities. They do not currently export the CSV curve files consumed by `pipette-fit`; running the [kymograph macro](src/pipette_viscometry/fiji-macro/Plot_Kymograph_Profile.ijm) shows the graph of the tong extension.
 
 
 ### 1. Execute Analysis CLI
