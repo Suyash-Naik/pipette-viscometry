@@ -65,13 +65,13 @@ lengthUnit = getLineLengthUnit();
 setSlice(beginFrame);
 beginTime = parseSeconds(getInfo("slice.label"));
 if (beginTime > 0) {
-	setSlice(endFrame);
-	totalTime = parseSeconds(getInfo("slice.label")) - beginTime;
-	timeUnit = "second";
+    setSlice(endFrame);
+    totalTime = parseSeconds(getInfo("slice.label")) - beginTime;
+    timeUnit = "second";
 }
 else {
-	totalTime = endFrame + 1 - beginFrame;
-	timeUnit = "frame";
+    totalTime = endFrame - beginFrame;
+    timeUnit = "frame";
 }
 
 xValues = newArray(endFrame + 1 - beginFrame);
@@ -84,7 +84,7 @@ for (i = beginFrame; i <= endFrame; i++) {
 		kymograph = newArray(profile.length * xValues.length);
 
 	offset = i - beginFrame;
-	xValues[offset] = totalTime * offset / xValues.length;
+	xValues[offset] = totalTime * offset / (xValues.length - 1);
 	yValues[offset] = findRightMostDarkPeak(profile, threshold) * lineLength / profile.length;
 	for (j = 0; j < profile.length; j++)
 		kymograph[offset + (profile.length - 1 - j) * xValues.length]
