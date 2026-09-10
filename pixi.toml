@@ -6,7 +6,7 @@ version = "0.1.0"
 
 [tasks]
 test = "pytest -q"
-fit = "pipette-fit --config config/example_config.yaml"
+fit = "pipette-fit --config config/config.yaml"
 
 [dependencies]
 python = "3.13.*"

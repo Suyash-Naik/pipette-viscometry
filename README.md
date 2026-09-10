@@ -43,7 +43,7 @@ It is a decoupled numerical architecture, an interactive dual-span Matplotlib GU
    cd pipette-viscometry 
    ```
 
-2. Install dependencies and setup the environment:
+2. Install dependencies and setup the environment after pixi is installed in your system:
    ```bash
    pixi install
    ```
