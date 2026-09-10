@@ -30,3 +30,4 @@ paths:
 gui:
   live_display: true
   theme: dark
+  
