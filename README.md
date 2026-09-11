@@ -5,7 +5,13 @@
 
 An interactive, config-driven Python package for micropipette aspiration viscosity measurement data analysis.
 
-![logo](.github/assets/pipette_logo.jpeg)
+<p align="center">
+  <img
+    src=".github/assets/pipette_logo.jpeg"
+    alt="Pipette Viscometry logo"
+    width="250"
+  >
+</p>
 
 It is a decoupled numerical architecture, an interactive dual-span Matplotlib GUI with live-updating parameter calculations, non-silent metadata parsing, and atomic, append-safe CSV storage to measure directly the mechanical parameters of creep release pipette experimental kymograph segmented csvs.
 
