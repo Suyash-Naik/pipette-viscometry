@@ -215,6 +215,7 @@ pixi run test
 # Run via pytest directly
 pytest
 ```
+Some of the development of this code has been done using agentic AI; however, I have reviewed and reworked the code to ensure it functions after generation. In case you find an issue, please report!
 
 ---
 
