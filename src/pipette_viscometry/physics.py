@@ -17,6 +17,6 @@ def calculate_viscosity(lasp: float, lret: float, Rp: float, P: float, Rcac: flo
         
     eta = (Rp * P) / denom
     Pc = P - (3 * math.pi * eta * lasp) / Rp
-    gamma = (Rp * Pc) / 2.0
+    gamma = (1/Rp-1/Rcac) * Pc / 2.0
     
     return ViscoResults(eta=eta, Pc=Pc, gamma=gamma)
